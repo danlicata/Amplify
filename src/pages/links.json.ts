@@ -4,7 +4,7 @@ import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
 	try {
-		const filePath = join(process.cwd(), "data", "links.json");
+		const filePath = "arn:aws:s3:::aci-sandbox-amplify/links.json";
 		const fileContents = readFileSync(filePath, "utf-8");
 		const data = JSON.parse(fileContents);
 
