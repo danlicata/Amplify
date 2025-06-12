@@ -1,0 +1,226 @@
+{
+    "schemaVersion": "0.0.4",
+    "baseURL": "https://intranet.example.com",
+    "name": "Integration 1",
+    "description": "Integration 1 is a ticketing system that allows users to create and manage IT requests.",
+    "updatedAt": "2025-06-04T00:00:00Z",
+    "forms": [
+        {
+            "path": "/it-request",
+            "description": "General IT Support Request Form",
+            "keywords": [
+                "it",
+                "support",
+                "help",
+                "general"
+            ],
+            "params": [
+                {
+                    "name": "userComments",
+                    "type": "string",
+                    "description": "Description of the IT issue",
+                    "required": true
+                },
+                {
+                    "name": "priority",
+                    "type": "number",
+                    "description": "Priority level (1-5, where 1 is highest)",
+                    "required": true,
+                    "min": 1,
+                    "max": 5
+                },
+                {
+                    "name": "isUrgent",
+                    "type": "boolean",
+                    "description": "Whether this is an urgent request",
+                    "required": false,
+                    "default": false
+                },
+                {
+                    "name": "userComments",
+                    "type": "string",
+                    "description": "Additional context about the IT support request and any relevant details.",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "path": "/it-hardware-request",
+            "description": "IT Hardware Request Form",
+            "keywords": [
+                "hardware",
+                "laptop",
+                "desktop",
+                "peripheral",
+                "equipment"
+            ],
+            "params": [
+                {
+                    "name": "hardwareType",
+                    "type": "enum",
+                    "description": "Type of hardware being requested",
+                    "required": true,
+                    "values": [
+                        {
+                            "value": "laptop",
+                            "description": "Portable computer for mobile work"
+                        },
+                        {
+                            "value": "desktop",
+                            "description": "Fixed workstation computer"
+                        },
+                        {
+                            "value": "monitor",
+                            "description": "Display screen for computer output"
+                        },
+                        {
+                            "value": "keyboard",
+                            "description": "Input device for typing and control"
+                        },
+                        {
+                            "value": "mouse",
+                            "description": "Pointing device for cursor control"
+                        },
+                        {
+                            "value": "headset",
+                            "description": "Audio device for calls and meetings"
+                        },
+                        {
+                            "value": "printer",
+                            "description": "Device for physical document output"
+                        },
+                        {
+                            "value": "scanner",
+                            "description": "Device for digitizing physical documents"
+                        },
+                        {
+                            "value": "tablet",
+                            "description": "Touchscreen device for mobile computing"
+                        }
+                    ]
+                },
+                {
+                    "name": "quantity",
+                    "type": "number",
+                    "description": "Number of items requested",
+                    "required": true,
+                    "min": 1,
+                    "max": 10
+                },
+                {
+                    "name": "requiredBy",
+                    "type": "date",
+                    "description": "Date by which the hardware is needed",
+                    "required": true
+                },
+                {
+                    "name": "justification",
+                    "type": "string",
+                    "description": "Business justification for the hardware request",
+                    "required": true
+                },
+                {
+                    "name": "userComments",
+                    "type": "string",
+                    "description": "Additional context about the hardware request and any specific requirements.",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "path": "/it-software-request",
+            "description": "IT Software Request Form",
+            "keywords": [
+                "software",
+                "application",
+                "license",
+                "access"
+            ],
+            "params": [
+                {
+                    "name": "softwareName",
+                    "type": "string",
+                    "description": "Name of the software being requested",
+                    "required": true
+                },
+                {
+                    "name": "licenseDuration",
+                    "type": "number",
+                    "description": "Duration of license in months",
+                    "required": true,
+                    "min": 1,
+                    "max": 36
+                },
+                {
+                    "name": "startDate",
+                    "type": "date",
+                    "description": "Requested start date for the license",
+                    "required": true
+                },
+                {
+                    "name": "purpose",
+                    "type": "string",
+                    "description": "Purpose of the software request",
+                    "required": true
+                },
+                {
+                    "name": "userComments",
+                    "type": "string",
+                    "description": "Additional context about the software request and any specific requirements.",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "path": "/it-access-request",
+            "description": "IT Access Request Form",
+            "keywords": [
+                "access",
+                "permission",
+                "system",
+                "account"
+            ],
+            "params": [
+                {
+                    "name": "systemName",
+                    "type": "string",
+                    "description": "Name of the system requiring access",
+                    "required": true
+                },
+                {
+                    "name": "accessLevel",
+                    "type": "enum",
+                    "description": "Required level of access",
+                    "required": true,
+                    "values": [
+                        "read",
+                        "write",
+                        "admin",
+                        "superuser"
+                    ]
+                },
+                {
+                    "name": "duration",
+                    "type": "number",
+                    "description": "Duration of access in days (0 for permanent)",
+                    "required": true,
+                    "min": 0,
+                    "max": 365
+                },
+                {
+                    "name": "requiresApproval",
+                    "type": "boolean",
+                    "description": "Whether this access request requires additional approval",
+                    "required": false,
+                    "default": true
+                },
+                {
+                    "name": "userComments",
+                    "type": "string",
+                    "description": "Additional context about the access request and any specific requirements.",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

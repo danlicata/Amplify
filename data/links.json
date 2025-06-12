@@ -1,0 +1,1867 @@
+[
+	{
+		"schemaVersion": "0.0.3",
+		"name": "Facilities Ticketing",
+		"description": "Used for facilities-related ticketing",
+		"baseURL": "https://facilities-ticketing.com",
+		"updatedAt": "2024-03-19T00:00:00Z",
+		"forms": [
+			{
+				"path": "/facilities/maintenance-request",
+				"description": "Submit a maintenance request for a facility issue",
+				"keywords": [
+					"facilities",
+					"maintenance",
+					"request",
+					"facilities maintenance",
+					"facilities maintenance request",
+					"AC",
+					"Air Conditioning",
+					"HVAC",
+					"heat",
+					"repair",
+					"building",
+					"infrastructure",
+					"light",
+					"temperature"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "The location requiring maintenance (e.g., building, floor, room number).",
+						"required": true
+					},
+					{
+						"name": "issueType",
+						"type": "enum",
+						"description": "The type of maintenance issue.",
+						"required": true,
+						"values": [
+							"plumbing",
+							"electrical",
+							"hvac",
+							"janitorial",
+							"structural"
+						]
+					},
+					{
+						"name": "urgency",
+						"type": "enum",
+						"description": "The urgency level of the request.",
+						"required": true,
+						"values": [
+							"low",
+							"medium",
+							"high",
+							"critical"
+						]
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the issue and any relevant circumstances.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/room-booking",
+				"description": "Book a meeting room or facility",
+				"keywords": [
+					"facilities",
+					"room",
+					"booking",
+					"facilities room",
+					"facilities room booking",
+					"meeting",
+					"conference",
+					"reservation",
+					"space"
+				],
+				"params": [
+					{
+						"name": "roomId",
+						"type": "string",
+						"description": "The ID or name of the room to book.",
+						"required": true
+					},
+					{
+						"name": "date",
+						"type": "date",
+						"description": "The date for the booking (e.g., YYYY-MM-DD).",
+						"required": true
+					},
+					{
+						"name": "startTime",
+						"type": "string",
+						"description": "The start time for the booking (e.g., HH:MM).",
+						"required": true
+					},
+					{
+						"name": "endTime",
+						"type": "string",
+						"description": "The end time for the booking (e.g., HH:MM).",
+						"required": true
+					},
+					{
+						"name": "attendees",
+						"type": "number",
+						"description": "The number of attendees.",
+						"required": true
+					},
+					{
+						"name": "purpose",
+						"type": "string",
+						"description": "Purpose of the meeting and any special requirements or setup needed.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the booking request and any specific requirements.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/cleaning-request",
+				"description": "Request cleaning services for a specific area or issue",
+				"keywords": [
+					"facilities",
+					"cleaning",
+					"request",
+					"facilities cleaning",
+					"facilities cleaning request",
+					"janitorial",
+					"sanitation",
+					"maintenance",
+					"hygiene",
+					"spill",
+					"carpet",
+					"window"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "The specific location requiring cleaning.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the cleaning request and any specific requirements.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/facilities/supply-request",
+				"description": "Request office supplies",
+				"keywords": [
+					"facilities",
+					"supplies",
+					"request",
+					"facilities supplies",
+					"facilities supplies request",
+					"office",
+					"inventory",
+					"materials",
+					"equipment",
+					"pens",
+					"paper",
+					"toner"
+				],
+				"params": [
+					{
+						"name": "itemRequested",
+						"type": "string",
+						"description": "The name or description of the item being requested.",
+						"required": true
+					},
+					{
+						"name": "quantity",
+						"type": "number",
+						"description": "The quantity of the item requested.",
+						"required": true
+					},
+					{
+						"name": "component",
+						"type": "string",
+						"description": "The component requesting the supplies.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about why the supplies are needed and any specific requirements.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/visitor-registration",
+				"description": "Register an upcoming visitor for building access",
+				"keywords": [
+					"facilities",
+					"visitor",
+					"registration",
+					"guest",
+					"access",
+					"badge"
+				],
+				"params": [
+					{
+						"name": "visitorName",
+						"type": "string",
+						"description": "Full name of the visitor.",
+						"required": true
+					},
+					{
+						"name": "visitorCompany",
+						"type": "string",
+						"description": "Company the visitor represents.",
+						"required": true
+					},
+					{
+						"name": "visitDate",
+						"type": "date",
+						"description": "Date of the visit (YYYY-MM-DD).",
+						"required": true
+					},
+					{
+						"name": "visitTime",
+						"type": "string",
+						"description": "Time of arrival (e.g., HH:MM).",
+						"required": true
+					},
+					{
+						"name": "hostEmployeeName",
+						"type": "string",
+						"description": "Name of the employee hosting the visitor.",
+						"required": true
+					},
+					{
+						"name": "purpose",
+						"type": "string",
+						"description": "Purpose of the visit or any other details.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the visitor registration request and any specific requirements.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/furniture-request",
+				"description": "Request new furniture or the repair of existing furniture",
+				"keywords": [
+					"facilities",
+					"furniture",
+					"request",
+					"repair",
+					"chair",
+					"desk",
+					"ergonomic"
+				],
+				"params": [
+					{
+						"name": "requestType",
+						"type": "enum",
+						"description": "Is this a request for new furniture or a repair?",
+						"required": true,
+						"values": [
+							"new",
+							"repair"
+						]
+					},
+					{
+						"name": "item",
+						"type": "string",
+						"description": "Type of furniture (e.g., office chair, standing desk).",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the request or the issue.",
+						"required": true
+					},
+					{
+						"name": "urgency",
+						"type": "enum",
+						"description": "The urgency level of the request.",
+						"required": true,
+						"values": [
+							"low",
+							"medium",
+							"high"
+						]
+					}
+				]
+			},
+			{
+				"path": "/facilities/key-request",
+				"description": "Request a new or replacement key or access card",
+				"keywords": [
+					"facilities",
+					"key",
+					"access card",
+					"fob",
+					"lock",
+					"door"
+				],
+				"params": [
+					{
+						"name": "requestType",
+						"type": "enum",
+						"description": "The type of request.",
+						"required": true,
+						"values": [
+							"new",
+							"replacement",
+							"permission_change"
+						]
+					},
+					{
+						"name": "keyOrCardNumber",
+						"type": "string",
+						"description": "The number of the key or card, if applicable.",
+						"required": false
+					},
+					{
+						"name": "location",
+						"type": "string",
+						"description": "The door or area for which access is needed.",
+						"required": true
+					},
+					{
+						"name": "reason",
+						"type": "string",
+						"description": "Justification for the request.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/pest-control",
+				"description": "Report a pest problem in the office",
+				"keywords": [
+					"facilities",
+					"pest",
+					"insects",
+					"bug",
+					"ant",
+					"mouse"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "Specific location of the pest sighting.",
+						"required": true
+					},
+					{
+						"name": "pestType",
+						"type": "string",
+						"description": "Type of pest, if known.",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Detailed description of the issue.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/vending-machine-issue",
+				"description": "Report an issue with a vending or coffee machine",
+				"keywords": [
+					"facilities",
+					"vending",
+					"coffee",
+					"machine",
+					"snack",
+					"drink"
+				],
+				"params": [
+					{
+						"name": "machineId",
+						"type": "string",
+						"description": "The ID number or location of the machine.",
+						"required": true
+					},
+					{
+						"name": "issueType",
+						"type": "enum",
+						"description": "The type of issue.",
+						"required": true,
+						"values": [
+							"out_of_stock",
+							"malfunction",
+							"payment_error"
+						]
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the problem.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/office-move-request",
+				"description": "Request assistance with moving desks or offices",
+				"keywords": [
+					"facilities",
+					"move",
+					"desk move",
+					"office move"
+				],
+				"params": [
+					{
+						"name": "currentLocation",
+						"type": "string",
+						"description": "Your current desk or office number.",
+						"required": true
+					},
+					{
+						"name": "newLocation",
+						"type": "string",
+						"description": "Your new desk or office number.",
+						"required": true
+					},
+					{
+						"name": "moveDate",
+						"type": "date",
+						"description": "The desired date for the move.",
+						"required": true
+					},
+					{
+						"name": "itemsToMove",
+						"type": "string",
+						"description": "List of items that need to be moved (e.g., computer, files, personal items).",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/safety-hazard-report",
+				"description": "Report a safety hazard in the workplace",
+				"keywords": [
+					"facilities",
+					"safety",
+					"hazard",
+					"spill",
+					"trip",
+					"warning"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "Exact location of the hazard.",
+						"required": true
+					},
+					{
+						"name": "hazardType",
+						"type": "string",
+						"description": "Type of hazard (e.g., wet floor, exposed wire).",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Detailed description of the hazard.",
+						"required": true
+					},
+					{
+						"name": "urgency",
+						"type": "enum",
+						"description": "How urgent is this hazard?",
+						"required": true,
+						"values": [
+							"low",
+							"medium",
+							"high",
+							"critical"
+						]
+					}
+				]
+			},
+			{
+				"path": "/facilities/parking-request",
+				"description": "Request a parking permit or report a parking lot issue",
+				"keywords": [
+					"facilities",
+					"parking",
+					"permit",
+					"car",
+					"garage"
+				],
+				"params": [
+					{
+						"name": "requestType",
+						"type": "enum",
+						"description": "The type of parking request.",
+						"required": true,
+						"values": [
+							"new_permit",
+							"report_issue"
+						]
+					},
+					{
+						"name": "vehicleInfo",
+						"type": "string",
+						"description": "Your vehicle make, model, and license plate (for new permits).",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional details about the parking request and any specific requirements.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/facilities/event-setup-request",
+				"description": "Request setup assistance for a special event",
+				"keywords": [
+					"facilities",
+					"event",
+					"setup",
+					"meeting",
+					"tables",
+					"chairs"
+				],
+				"params": [
+					{
+						"name": "eventName",
+						"type": "string",
+						"description": "Name of the event.",
+						"required": true
+					},
+					{
+						"name": "date",
+						"type": "date",
+						"description": "Date of the event.",
+						"required": true
+					},
+					{
+						"name": "time",
+						"type": "string",
+						"description": "Start and end time of the event.",
+						"required": true
+					},
+					{
+						"name": "location",
+						"type": "string",
+						"description": "Location of the event.",
+						"required": true
+					},
+					{
+						"name": "setupRequirements",
+						"type": "string",
+						"description": "Detailed list of setup needs (e.g., number of tables, chairs, layout).",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/facilities/ergonomic-assessment-request",
+				"description": "Request an ergonomic assessment of your workstation",
+				"keywords": [
+					"facilities",
+					"ergonomics",
+					"ergo",
+					"assessment",
+					"comfort",
+					"injury",
+					"workstation"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "Your desk or office location.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Describe the discomfort or issues you are experiencing.",
+						"required": true
+					}
+				]
+			}
+		]
+	},
+	{
+		"schemaVersion": "0.0.3",
+		"name": "HR Ticketing",
+		"baseURL": "https://hr-ticketing.com",
+		"description": "Used for HR-related ticketing",
+		"updatedAt": "2024-03-19T00:00:00Z",
+		"forms": [
+			{
+				"path": "/hr/time-off-request",
+				"description": "Submit a request for time off",
+				"keywords": [
+					"hr",
+					"time off",
+					"request",
+					"hr time off",
+					"hr time off request",
+					"vacation",
+					"leave",
+					"absence",
+					"pto",
+					"fmla",
+					"jury duty"
+				],
+				"params": [
+					{
+						"name": "startDate",
+						"type": "date",
+						"description": "Start date of the time off (YYYY-MM-DD).",
+						"required": true
+					},
+					{
+						"name": "endDate",
+						"type": "date",
+						"description": "End date of the time off (YYYY-MM-DD).",
+						"required": true
+					},
+					{
+						"name": "timeOffType",
+						"type": "enum",
+						"description": "Type of time off requested.",
+						"required": true,
+						"values": [
+							"vacation",
+							"sick_leave",
+							"personal_day",
+							"bereavement",
+							"fmla",
+							"jury_duty",
+							"unpaid_leave"
+						]
+					},
+					{
+						"name": "reason",
+						"type": "string",
+						"description": "Optional reason for the request.",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the time off request and any relevant details.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/employee-info-update",
+				"description": "Update personal employee information",
+				"keywords": [
+					"hr",
+					"employee",
+					"info",
+					"update",
+					"hr employee info",
+					"hr employee info update",
+					"personal",
+					"details",
+					"profile",
+					"contact",
+					"address",
+					"name change"
+				],
+				"params": [
+					{
+						"name": "fieldToUpdate",
+						"type": "enum",
+						"description": "Which information to update.",
+						"required": true,
+						"values": [
+							"Name",
+							"Job Title",
+							"Component",
+							"Work Location",
+							"Office"
+						]
+					},
+					{
+						"name": "newValue",
+						"type": "string",
+						"description": "The new value for the selected field.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the information update and any relevant details.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/benefits-inquiry",
+				"description": "Ask a question about employee benefits",
+				"keywords": [
+					"hr",
+					"benefits",
+					"inquiry",
+					"hr benefits",
+					"hr benefits inquiry",
+					"insurance",
+					"healthcare",
+					"coverage",
+					"compensation",
+					"401k",
+					"retirement"
+				],
+				"params": [
+					{
+						"name": "benefitType",
+						"type": "enum",
+						"description": "Type of benefit to inquire about.",
+						"required": true,
+						"values": [
+							"health_insurance",
+							"dental_insurance",
+							"vision_insurance",
+							"retirement_plan",
+							"life_insurance"
+						]
+					},
+					{
+						"name": "question",
+						"type": "string",
+						"description": "Specific question about the benefit.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about your benefits inquiry and any specific concerns.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/payroll-issue-report",
+				"description": "Report an issue with a paycheck",
+				"keywords": [
+					"hr",
+					"payroll",
+					"issue",
+					"hr payroll",
+					"hr payroll issue",
+					"salary",
+					"compensation",
+					"payment",
+					"direct deposit",
+					"pay stub",
+					"paycheck"
+				],
+				"params": [
+					{
+						"name": "payPeriodEndDate",
+						"type": "date",
+						"description": "End date of the pay period in question (YYYY-MM-DD).",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Description of the payroll issue.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the payroll issue and any relevant details.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/policy-question",
+				"description": "Ask a question about a specific HR policy",
+				"keywords": [
+					"hr",
+					"policy",
+					"question",
+					"hr policy",
+					"hr policy question",
+					"guidelines",
+					"procedures",
+					"rules",
+					"compliance",
+					"dress code",
+					"remote work"
+				],
+				"params": [
+					{
+						"name": "policyTopic",
+						"type": "string",
+						"description": "The HR policy topic you have a question about.",
+						"required": true
+					},
+					{
+						"name": "question",
+						"type": "string",
+						"description": "Your specific question regarding the policy.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about your policy question and any specific concerns.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/employment-verification-request",
+				"description": "Request a letter verifying employment",
+				"keywords": [
+					"hr",
+					"employment",
+					"verification",
+					"letter",
+					"proof of employment"
+				],
+				"params": [
+					{
+						"name": "recipientName",
+						"type": "string",
+						"description": "Name of the person or organization receiving the letter.",
+						"required": true
+					},
+					{
+						"name": "recipientAddress",
+						"type": "string",
+						"description": "Address of the recipient.",
+						"required": true
+					},
+					{
+						"name": "includeSalary",
+						"type": "boolean",
+						"description": "Whether to include salary information in the letter.",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Any additional details or specific requirements for the letter.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/training-request",
+				"description": "Request to enroll in a training course or program",
+				"keywords": [
+					"hr",
+					"training",
+					"development",
+					"course",
+					"education",
+					"learning"
+				],
+				"params": [
+					{
+						"name": "courseName",
+						"type": "string",
+						"description": "The name of the course or program.",
+						"required": true
+					},
+					{
+						"name": "provider",
+						"type": "string",
+						"description": "The organization or platform offering the training.",
+						"required": true
+					},
+					{
+						"name": "businessJustification",
+						"type": "string",
+						"description": "How this training will benefit your role and the company.",
+						"required": true
+					},
+					{
+						"name": "cost",
+						"type": "number",
+						"description": "The cost of the training, if known.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/hr/recruitment-request",
+				"description": "Request to open a new job requisition",
+				"keywords": [
+					"hr",
+					"recruitment",
+					"hiring",
+					"job",
+					"requisition",
+					"position"
+				],
+				"params": [
+					{
+						"name": "jobTitle",
+						"type": "string",
+						"description": "The title for the new position.",
+						"required": true
+					},
+					{
+						"name": "component",
+						"type": "string",
+						"description": "The component where the new hire will work.",
+						"required": true
+					},
+					{
+						"name": "jobDescription",
+						"type": "string",
+						"description": "A detailed description of the roles and responsibilities.",
+						"required": true
+					},
+					{
+						"name": "managerName",
+						"type": "string",
+						"description": "The name of the hiring manager.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/employee-relations-report",
+				"description": "Report an employee relations issue, such as a conflict",
+				"keywords": [
+					"hr",
+					"employee relations",
+					"conflict",
+					"dispute",
+					"complaint"
+				],
+				"params": [
+					{
+						"name": "dateOfIncident",
+						"type": "date",
+						"description": "The date the incident occurred.",
+						"required": true
+					},
+					{
+						"name": "involvedParties",
+						"type": "string",
+						"description": "Names of the people involved.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A confidential, detailed description of the incident.",
+						"required": true
+					},
+					{
+						"name": "desiredOutcome",
+						"type": "string",
+						"description": "What you would like to see happen as a result of this report.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/hr/tax-form-request",
+				"description": "Request a copy of a tax form like a W-2",
+				"keywords": [
+					"hr",
+					"tax",
+					"form",
+					"w-2",
+					"w2"
+				],
+				"params": [
+					{
+						"name": "formType",
+						"type": "enum",
+						"description": "The type of tax form you are requesting.",
+						"required": true,
+						"values": [
+							"W-2",
+							"1099",
+							"other"
+						]
+					},
+					{
+						"name": "year",
+						"type": "number",
+						"description": "The tax year you are requesting the form for.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/direct-deposit-update",
+				"description": "Update your direct deposit banking information",
+				"keywords": [
+					"hr",
+					"direct deposit",
+					"bank",
+					"payroll",
+					"account"
+				],
+				"params": [
+					{
+						"name": "bankName",
+						"type": "string",
+						"description": "The name of your bank.",
+						"required": true
+					},
+					{
+						"name": "routingNumber",
+						"type": "string",
+						"description": "Your bank's routing number.",
+						"required": true
+					},
+					{
+						"name": "accountNumber",
+						"type": "string",
+						"description": "Your bank account number.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/workplace-accommodation-request",
+				"description": "Request a workplace accommodation",
+				"keywords": [
+					"hr",
+					"accommodation",
+					"disability",
+					"ada",
+					"accessibility"
+				],
+				"params": [
+					{
+						"name": "natureOfDisability",
+						"type": "string",
+						"description": "A description of the condition requiring accommodation.",
+						"required": true
+					},
+					{
+						"name": "requestedAccommodation",
+						"type": "string",
+						"description": "The specific accommodation you are requesting.",
+						"required": true
+					},
+					{
+						"name": "medicalDocumentationAttached",
+						"type": "boolean",
+						"description": "Confirm if you are attaching medical documentation.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/hr/reimbursement-request",
+				"description": "Submit a request for an approved reimbursement",
+				"keywords": [
+					"hr",
+					"reimbursement",
+					"expense",
+					"receipt",
+					"travel"
+				],
+				"params": [
+					{
+						"name": "expenseType",
+						"type": "enum",
+						"description": "The category of the expense.",
+						"required": true,
+						"values": [
+							"travel",
+							"training",
+							"wellness",
+							"office_supplies",
+							"other"
+						]
+					},
+					{
+						"name": "amount",
+						"type": "number",
+						"description": "The total amount to be reimbursed.",
+						"required": true
+					},
+					{
+						"name": "date",
+						"type": "date",
+						"description": "The date of the expense.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A brief description of the expense.",
+						"required": true
+					},
+					{
+						"name": "receiptAttached",
+						"type": "boolean",
+						"description": "Confirm that you have attached a receipt.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/employee-referral-submission",
+				"description": "Refer a candidate for a job opening",
+				"keywords": [
+					"hr",
+					"referral",
+					"employee referral",
+					"hiring",
+					"recruitment"
+				],
+				"params": [
+					{
+						"name": "candidateName",
+						"type": "string",
+						"description": "The full name of the candidate you are referring.",
+						"required": true
+					},
+					{
+						"name": "candidateResume",
+						"type": "string",
+						"description": "Link to the candidate's resume or attach it.",
+						"required": true
+					},
+					{
+						"name": "referredForPosition",
+						"type": "string",
+						"description": "The job title or requisition ID you are referring them for.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/hr/workers-compensation-claim",
+				"description": "Report a work-related injury and start a claim",
+				"keywords": [
+					"hr",
+					"workers comp",
+					"injury",
+					"claim",
+					"workplace injury"
+				],
+				"params": [
+					{
+						"name": "dateOfInjury",
+						"type": "date",
+						"description": "The date the injury occurred.",
+						"required": true
+					},
+					{
+						"name": "locationOfInjury",
+						"type": "string",
+						"description": "Where the injury occurred.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A detailed account of how the injury happened.",
+						"required": true
+					},
+					{
+						"name": "witnesses",
+						"type": "string",
+						"description": "Names of any witnesses, if applicable.",
+						"required": false
+					}
+				]
+			}
+		]
+	},
+	{
+		"schemaVersion": "0.0.3",
+		"name": "IT Ticketing",
+		"baseURL": "https://it-ticketing.com",
+		"description": "Used for IT-related ticketing",
+		"updatedAt": "2024-03-19T00:00:00Z",
+		"forms": [
+			{
+				"path": "/it/hardware-issue",
+				"description": "Report an issue with a piece of IT hardware",
+				"keywords": [
+					"it",
+					"hardware",
+					"issue",
+					"it hardware",
+					"it hardware issue",
+					"computer",
+					"device",
+					"equipment",
+					"malfunction",
+					"printer",
+					"print",
+					"printing",
+					"paper jam",
+					"toner",
+					"ink",
+					"monitor",
+					"display",
+					"flickering",
+					"no signal",
+					"phone",
+					"voicemail"
+				],
+				"params": [
+					{
+						"name": "assetTag",
+						"type": "string",
+						"description": "The asset tag of the affected hardware.",
+						"required": false
+					},
+					{
+						"name": "hardwareType",
+						"type": "enum",
+						"description": "Type of hardware experiencing an issue.",
+						"required": true,
+						"values": [
+							"laptop",
+							"desktop",
+							"monitor",
+							"printer",
+							"phone",
+							"other"
+						]
+					},
+					{
+						"name": "printerModel",
+						"type": "string",
+						"description": "The model of the printer (e.g., Dell, HP, etc.).",
+						"required": false,
+						"showWhen": {
+							"hardwareType": "printer"
+						}
+					},
+					{
+						"name": "printerIssueType",
+						"type": "enum",
+						"description": "The type of printer issue.",
+						"required": false,
+						"values": [
+							"paper_jam",
+							"toner_ink",
+							"connectivity",
+							"quality",
+							"other"
+						],
+						"showWhen": {
+							"hardwareType": "printer"
+						}
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A detailed description of the hardware issue.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the hardware issue and any relevant details.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/it/software-issue",
+				"description": "Report an issue with a software application",
+				"keywords": [
+					"it",
+					"software",
+					"issue",
+					"it software",
+					"it software issue",
+					"application",
+					"program",
+					"bug",
+					"error",
+					"zoom",
+					"teams",
+					"video conference",
+					"conferencing",
+					"update"
+				],
+				"params": [
+					{
+						"name": "softwareName",
+						"type": "string",
+						"description": "The name of the software experiencing an issue.",
+						"required": true
+					},
+					{
+						"name": "softwareVersion",
+						"type": "string",
+						"description": "The version of the software, if known.",
+						"required": false
+					},
+					{
+						"name": "operatingSystem",
+						"type": "string",
+						"description": "The operating system you are using (e.g., Windows 10, macOS Sonoma).",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A detailed description of the software issue, including steps to reproduce if possible.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the software issue and any relevant details.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/it/new-access-request",
+				"description": "Request access to a new software, system, or shared resource",
+				"keywords": [
+					"it",
+					"new",
+					"access",
+					"it new",
+					"it new access",
+					"permission",
+					"authorization",
+					"credentials",
+					"login",
+					"admin",
+					"administrator",
+					"rights",
+					"elevated",
+					"folder",
+					"drive"
+				],
+				"params": [
+					{
+						"name": "resourceName",
+						"type": "string",
+						"description": "Name of the software, system, or shared drive you need access to.",
+						"required": true
+					},
+					{
+						"name": "justification",
+						"type": "string",
+						"description": "Reason for needing access to this resource.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about your access request and any specific requirements.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/network-problem",
+				"description": "Report a network connectivity problem",
+				"keywords": [
+					"it",
+					"network",
+					"problem",
+					"it network",
+					"it network problem",
+					"connectivity",
+					"internet",
+					"wifi",
+					"connection",
+					"vpn"
+				],
+				"params": [
+					{
+						"name": "location",
+						"type": "string",
+						"description": "Your current location (e.g., office building, floor, remote).",
+						"required": true
+					},
+					{
+						"name": "problemType",
+						"type": "enum",
+						"description": "The type of network problem.",
+						"required": true,
+						"values": [
+							"no_internet",
+							"slow_internet",
+							"cannot_access_share_drive",
+							"vpn_issue",
+							"wifi_problem",
+							"other"
+						]
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A detailed description of the network problem.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the network problem and any relevant details.",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/it/new-employee-laptop",
+				"description": "Request a laptop for a new employee",
+				"keywords": [
+					"it",
+					"laptop",
+					"new employee",
+					"onboarding",
+					"it new employee",
+					"it onboarding",
+					"computer",
+					"equipment",
+					"setup",
+					"provisioning"
+				],
+				"params": [
+					{
+						"name": "specialRequirements",
+						"type": "string",
+						"description": "Any special requirements or specifications needed for the role.",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context about the laptop request and any specific requirements.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/hardware-request",
+				"description": "Request new IT hardware for an existing employee",
+				"keywords": [
+					"it",
+					"hardware",
+					"request",
+					"new hardware",
+					"upgrade",
+					"replacement",
+					"monitor",
+					"keyboard",
+					"mouse",
+					"docking station"
+				],
+				"params": [
+					{
+						"name": "hardwareType",
+						"type": "enum",
+						"description": "The type of hardware being requested.",
+						"required": true,
+						"values": [
+							"monitor",
+							"keyboard",
+							"mouse",
+							"laptop",
+							"docking station",
+							"headset",
+							"other"
+						]
+					},
+					{
+						"name": "justification",
+						"type": "string",
+						"description": "Reason for the hardware request (e.g., replacement for broken item, upgrade for performance).",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Additional context or specific model requests.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/software-purchase-request",
+				"description": "Request the purchase of a new software application for your team or component",
+				"keywords": [
+					"it",
+					"software",
+					"purchase",
+					"request",
+					"new software",
+					"license",
+					"application"
+				],
+				"params": [
+					{
+						"name": "softwareName",
+						"type": "string",
+						"description": "The name of the software to be purchased.",
+						"required": true
+					},
+					{
+						"name": "website",
+						"type": "string",
+						"description": "Link to the software's official website.",
+						"required": true
+					},
+					{
+						"name": "businessCase",
+						"type": "string",
+						"description": "Business justification for purchasing this software.",
+						"required": true
+					},
+					{
+						"name": "numberOfUsers",
+						"type": "number",
+						"description": "How many users will need this software.",
+						"required": true
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Any other relevant information.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/password-reset",
+				"description": "Reset your password for an application or system",
+				"keywords": [
+					"it",
+					"password",
+					"reset",
+					"forgot password",
+					"account lockout"
+				],
+				"params": [
+					{
+						"name": "application",
+						"type": "string",
+						"description": "The name of the application or system you are locked out of.",
+						"required": true
+					},
+					{
+						"name": "username",
+						"type": "string",
+						"description": "Your username for that application.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/software-installation-request",
+				"description": "Request to have approved software installed on your computer",
+				"keywords": [
+					"it",
+					"software",
+					"install",
+					"installation",
+					"application"
+				],
+				"params": [
+					{
+						"name": "softwareName",
+						"type": "string",
+						"description": "The name of the software you need installed.",
+						"required": true
+					},
+					{
+						"name": "justification",
+						"type": "string",
+						"description": "Briefly explain why you need this software for your role.",
+						"required": true
+					},
+					{
+						"name": "computerAssetTag",
+						"type": "string",
+						"description": "The asset tag of the computer where the software should be installed.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/performance-issue",
+				"description": "Report that your computer is running slowly",
+				"keywords": [
+					"it",
+					"slow computer",
+					"performance",
+					"lagging",
+					"freezing"
+				],
+				"params": [
+					{
+						"name": "deviceType",
+						"type": "enum",
+						"description": "The type of device that is slow.",
+						"required": true,
+						"values": [
+							"laptop",
+							"desktop",
+							"virtual_machine"
+						]
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Describe the performance issue (e.g., when does it happen, what applications are running).",
+						"required": true
+					},
+					{
+						"name": "troubleshootingStepsTaken",
+						"type": "string",
+						"description": "What steps have you already taken to resolve the issue (e.g., rebooting)?",
+						"required": false
+					}
+				]
+			},
+			{
+				"path": "/it/security-incident-report",
+				"description": "Report a security incident, such as a phishing email or malware",
+				"keywords": [
+					"it",
+					"security",
+					"phishing",
+					"malware",
+					"virus",
+					"incident",
+					"threat"
+				],
+				"params": [
+					{
+						"name": "incidentType",
+						"type": "enum",
+						"description": "The type of security incident.",
+						"required": true,
+						"values": [
+							"phishing_email",
+							"malware_infection",
+							"lost_device",
+							"data_breach",
+							"other"
+						]
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "A detailed description of the incident.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/data-backup-restore-request",
+				"description": "Request a data backup or to restore files from a backup",
+				"keywords": [
+					"it",
+					"data",
+					"backup",
+					"restore",
+					"files",
+					"recover"
+				],
+				"params": [
+					{
+						"name": "requestType",
+						"type": "enum",
+						"description": "Are you requesting a backup or a restore?",
+						"required": true,
+						"values": [
+							"backup",
+							"restore"
+						]
+					},
+					{
+						"name": "filePath",
+						"type": "string",
+						"description": "The full path of the file or folder to be backed up or restored.",
+						"required": true
+					},
+					{
+						"name": "date",
+						"type": "date",
+						"description": "For restores, the date you want to restore the files from.",
+						"required": false
+					},
+					{
+						"name": "reason",
+						"type": "string",
+						"description": "The reason for the request.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/onboarding-request",
+				"description": "Request all necessary IT resources for a new hire",
+				"keywords": [
+					"it",
+					"onboarding",
+					"new hire",
+					"new employee",
+					"setup"
+				],
+				"params": [
+					{
+						"name": "newHireName",
+						"type": "string",
+						"description": "The full name of the new employee.",
+						"required": true
+					},
+					{
+						"name": "startDate",
+						"type": "date",
+						"description": "The new employee's start date.",
+						"required": true
+					},
+					{
+						"name": "managerName",
+						"type": "string",
+						"description": "The name of the new hire's manager.",
+						"required": true
+					},
+					{
+						"name": "requiredHardware",
+						"type": "string",
+						"description": "List the required hardware (e.g., laptop, monitor, keyboard).",
+						"required": true
+					},
+					{
+						"name": "requiredSoftware",
+						"type": "string",
+						"description": "List all software applications the new hire will need access to.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/offboarding-request",
+				"description": "Deactivate accounts and access for a departing employee",
+				"keywords": [
+					"it",
+					"offboarding",
+					"departing employee",
+					"deactivate"
+				],
+				"params": [
+					{
+						"name": "employeeName",
+						"type": "string",
+						"description": "The full name of the departing employee.",
+						"required": true
+					},
+					{
+						"name": "lastDay",
+						"type": "date",
+						"description": "The employee's last day of employment.",
+						"required": true
+					},
+					{
+						"name": "managerName",
+						"type": "string",
+						"description": "The name of the departing employee's manager.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/loaner-equipment-request",
+				"description": "Request temporary loaner equipment",
+				"keywords": [
+					"it",
+					"loaner",
+					"equipment",
+					"temporary",
+					"laptop",
+					"charger"
+				],
+				"params": [
+					{
+						"name": "equipmentType",
+						"type": "enum",
+						"description": "The type of equipment you need.",
+						"required": true,
+						"values": [
+							"laptop",
+							"charger",
+							"monitor",
+							"other"
+						]
+					},
+					{
+						"name": "justification",
+						"type": "string",
+						"description": "Why you need the loaner equipment (e.g., yours is being repaired).",
+						"required": true
+					},
+					{
+						"name": "returnDate",
+						"type": "date",
+						"description": "The expected date you will return the equipment.",
+						"required": true
+					}
+				]
+			},
+			{
+				"path": "/it/mobile-device-support",
+				"description": "Get help with a mobile device (phone or tablet)",
+				"keywords": [
+					"it",
+					"mobile",
+					"phone",
+					"tablet",
+					"iphone",
+					"android",
+					"email setup"
+				],
+				"params": [
+					{
+						"name": "deviceModel",
+						"type": "string",
+						"description": "The model of your device (e.g., iPhone 15, Samsung Galaxy S23).",
+						"required": true
+					},
+					{
+						"name": "osVersion",
+						"type": "string",
+						"description": "The operating system version, if known.",
+						"required": false
+					},
+					{
+						"name": "userComments",
+						"type": "string",
+						"description": "Describe the issue you are having with your mobile device.",
+						"required": true
+					}
+				]
+			}
+		]
+	}
+]

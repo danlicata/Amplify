@@ -1,0 +1,28 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.0.0-beta.5/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"includes": [
+			"src/**/*.{ts,tsx,mts,json,css}",
+			"test/**/*.{ts,tsx,mts,json}",
+			"netlify/**/*.{ts,tsx,mts,json}",
+			"amplify/**/*.{ts,tsx,mts,json}",
+			"config/**/*.{json,jsonc,ts}",
+			"package.json"
+		]
+	},
+	"linter": {
+		"rules": {
+			"style": {
+				"useImportType": "off"
+			},
+			"correctness": {
+				"noUnusedImports": "off"
+			}
+		}
+	}
+}

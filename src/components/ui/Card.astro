@@ -1,0 +1,19 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+
+interface Props {
+    /** Additional classes to append to the card wrapper */
+    class?: string;
+    children?: JSX.Element | JSX.Element[];
+}
+
+const { class: className = "", ...rest } = Astro.props as Props;
+---
+
+<div
+    class={`bg-white rounded-xl p-6 shadow-sm border border-slate-200 ${className}`.trim()}
+    {...rest}
+>
+    <slot />
+</div>
+

@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LeaderboardComponent from "../components/leaderboard/Leaderboard";
+import Legend from "../components/leaderboard/Legend";
+---
+
+<Layout
+  title="Leaderboard | Enterprise Ticketing Portal"
+  description="Tracking the reporting integration status of various services."
+>
+  <main class="py-12 max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
+      >
+        Integration Progress Leaderboard
+      </h1>
+      <p class="text-lg text-slate-600 mt-2">
+        Tracking the reporting integration status of each service.
+      </p>
+    </div>
+    <div
+      class="bg-white shadow-sm border border-slate-200 rounded-xl p-8 md:p-10 lg:p-12"
+    >
+      <LeaderboardComponent client:load />
+      <Legend client:load />
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LinkFinder from "../components/link-finder/LinkFinder";
+import AiAssistant from "../components/AI-assistant/AiAssistant";
+import OutageStatus from "../components/OutageStatus";
+import type { Outage } from "../components/OutageStatus";
+import ActiveItems from "../components/task-list/ActiveItems.astro";
+import HeroSection from "../components/HeroSection.astro";
+import type { UserDetails } from "../types";
+import Card from "../components/ui/Card.astro";
+
+const userDetails: UserDetails = {
+    firstName: "John",
+    lastName: "Solly",
+    jobTitle: "IT Specialist",
+    component: "Front Office",
+    workLocation: "HQ",
+    officeLocation: "Building A, Floor 3, Room 301",
+};
+
+const mockOutages: Outage[] = [
+    {
+        id: "1",
+        service: "Email Service",
+        description: "Users are experiencing delays in receiving emails.",
+        status: "investigating",
+        affectedCount: 5,
+    },
+    {
+        id: "2",
+        service: "VPN Access",
+        description:
+            "We are aware of an issue preventing some users from connecting to the VPN.",
+        status: "identified",
+        affectedCount: 12,
+    },
+    {
+        id: "3",
+        service: "SharePoint",
+        description:
+            "Performance has been restored, and we are monitoring the service.",
+        status: "monitoring",
+        affectedCount: 8,
+    },
+];
+---
+
+<Layout title="Ticketing Portal" description="Enterprise ticketing portal">
+    <div class="min-h-screen flex flex-col">
+        <!-- Hero Section -->
+        <HeroSection userDetails={userDetails} />
+
+        <!-- Main Content Area -->
+        <main class="container mx-auto px-6 py-12 flex-grow">
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left Column: Search and Active Items -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Search Section -->
+                    <Card>
+                        <div class="text-center mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900">
+                                Resource Finder
+                            </h2>
+                            <p class="text-slate-500 mt-2 text-lg">
+                                Search for HR policies, IT forms, and other key
+                                documents.
+                            </p>
+                        </div>
+                        <LinkFinder client:visible userDetails={userDetails} />
+                    </Card>
+
+                    <!-- Active Items Section -->
+                    <ActiveItems />
+                </div>
+
+                <!-- Right Column: User Info and AI Assistant -->
+                <div class="lg:col-span-5">
+                    <!-- User Info Section -->
+                    <OutageStatus outages={mockOutages} client:visible />
+
+                    <!-- AI Assistant Section -->
+                    <div class="sticky top-24 mt-4">
+                        <AiAssistant client:visible userDetails={userDetails} />
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</Layout>

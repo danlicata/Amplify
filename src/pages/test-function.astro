@@ -1,0 +1,53 @@
+---
+const apiEndpoint = import.meta.env.PUBLIC_API_ENDPOINT;
+
+if (!apiEndpoint) {
+  console.error("PUBLIC_API_ENDPOINT is not set. Please ensure it is defined in your environment variables (.env file or hosting provider settings).");
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Simple Test Hello Function</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Simple Test Hello Function</h1>
+      <button id="testButtonSimple">Test Function (Simple Fetch)</button>
+      <pre id="resultSimple"></pre>
+    </div>
+
+    <script type="module" is:inline define:vars={{ apiEndpoint }}>
+      const testButton = document.getElementById('testButtonSimple');
+      const resultDisplay = document.getElementById('resultSimple');
+      
+      const apiUrl = apiEndpoint ? `${apiEndpoint}api/hello` : null;
+
+      if (!apiUrl) {
+        const errorMessage = 'Error: API URL not configured. Ensure PUBLIC_API_ENDPOINT is set.';
+        resultDisplay.textContent = errorMessage;
+        console.error(errorMessage, "apiEndpoint value:", apiEndpoint);
+      }
+
+      if (testButton && resultDisplay && apiUrl) {
+        testButton.addEventListener('click', async () => {
+          resultDisplay.textContent = 'Loading...';
+          try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(`Failed with status ${response.status}: ${errorText}`);
+            }
+            const data = await response.json();
+            resultDisplay.textContent = JSON.stringify(data, null, 2);
+          } catch (error) {
+            console.error('Error during API call:', error);
+            resultDisplay.textContent = `Error: ${error.message}`;
+          }
+        });
+      }
+    </script>
+  </body>
+</html> 

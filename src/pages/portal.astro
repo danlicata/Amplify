@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SmartSearch from "../components/SmartSearch";
+import AiBot from "../components/AiBot";
+import {
+	ShieldExclamationIcon,
+	BuildingOfficeIcon,
+	CalendarDaysIcon,
+	ReceiptPercentIcon,
+} from "@heroicons/react/24/solid";
+
+// Placeholder data for navigation - in a real app, this might come from a CMS or API
+// const mainNavLinks = [
+//   { text: "Help center", href: "#" },
+//   { text: "Your career", href: "#" },
+//   { text: "News center", href: "#" },
+//   { text: "Community", href: "#" },
+// ];
+
+// const userNavLinks = [
+//   { text: "My Tasks", href: "#", count: "9+" },
+//   { text: "My Requests", href: "#" },
+//   { text: "My Favorites", href: "#" },
+//   { text: "More", href: "#" },
+// ];
+---
+
+<Layout title="Enterprise Ticketing Portal" description="Your central hub for help, services, and information.">
+  <div class="min-h-screen bg-slate-100 flex flex-col">
+    <!-- Header -->
+    <header class="bg-slate-800 text-white shadow-md">
+      <div class="container mx-auto px-4 py-3 flex justify-start items-center">
+        <!-- Logo -->
+        <div class="text-2xl font-bold">
+          Company Name
+        </div>
+
+        {/* <!-- Main Navigation -->
+        <nav class="hidden md:flex space-x-4">
+          {mainNavLinks.map(link => (
+            <a href={link.href} class="hover:text-slate-300 px-3 py-2 rounded-md text-sm font-medium">{link.text}</a>
+          ))}
+        </nav> */}
+
+        {/* <!-- User Navigation & Support Button -->
+        <div class="flex items-center space-x-4">
+          <nav class="hidden md:flex space-x-3">
+            {userNavLinks.map(link => (
+              <a href={link.href} class="hover:text-slate-300 px-2 py-2 rounded-md text-sm font-medium relative">
+                {link.text}
+                {link.count && <span class="absolute top-1 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full transform translate-x-1/2 -translate-y-1/2">{link.count}</span>}
+              </a>
+            ))}
+          </nav>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md text-sm flex items-center gap-2">
+            <!-- Chat Bubble Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12c0 4.556 4.694 8.25 9.75 8.25.978 0 1.927-.12 2.825-.344.37-.09.77-.02 1.06.21l2.348 1.878a.75.75 0 0 0 1.197-.6v-2.1c0-.414.336-.75.75-.75 1.5 0 2.25-1.5 2.25-3.75s-.75-3.75-2.25-3.75c-.414 0-.75-.336-.75-.75v-2.1a.75.75 0 0 0-1.197-.6l-2.348 1.878a1.25 1.25 0 0 1-1.06.21A8.25 8.25 0 0 1 2.25 12Z" />
+            </svg>
+            Get support
+          </button>
+          <!-- User Avatar Placeholder -->
+          <div class="w-8 h-8 bg-slate-500 rounded-full flex items-center justify-center text-white font-bold">
+            JS
+          </div>
+        </div> */}
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16 px-4 text-center relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Welcome banner" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" loading="lazy" />
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Welcome to the Enterprise Ticketing Portal</h1>
+        <p class="text-2xl font-semibold mb-2 drop-shadow text-blue-100">
+          {(() => {
+            const hour = new Date().getHours();
+            if (hour < 12) return "Good morning";
+            if (hour < 18) return "Good afternoon";
+            return "Good evening";
+          })()}, John!
+        </p>
+        <p class="text-lg md:text-xl font-medium mb-6 drop-shadow">Your central hub for help, services, and information. We're glad you're here!</p>
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+      <div class="bg-white shadow-xl rounded-lg p-6 md:p-8 max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto">
+        <!-- "How can we help?" Section -->
+        <section class="mb-10">
+          <h2 class="text-3xl font-semibold text-slate-800 mb-6">How can we help?</h2>
+          <SmartSearch client:visible />
+        </section>
+
+        <!-- SmartSearch and AiBot Components -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div class="md:col-span-3 space-y-10">
+            <div class="bg-slate-50 p-4 rounded-lg shadow">
+              <h3 class="text-2xl font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                <!-- Clipboard List Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 4.5H7A2.25 2.25 0 0 1 4.75 18.25v-12A2.25 2.25 0 0 1 7 4h2.25A2.25 2.25 0 0 1 11.5 6.25V7.5h1v-.25A2.25 2.25 0 0 1 14.75 4H17a2.25 2.25 0 0 1 2.25 2.25v12A2.25 2.25 0 0 1 17 20.5Z" />
+                </svg>
+                My active items
+              </h3>
+              <ul class="divide-y divide-slate-200">
+                <li class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <ShieldExclamationIcon className="w-6 h-6 text-yellow-500" />
+                    <a href="https://example.com/integration1/security/incident-report" class="font-medium text-slate-800 hover:underline">Security Incident Report</a>
+                  </div>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-yellow-100 text-yellow-800">Pending Approval</span>
+                </li>
+                <li class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <BuildingOfficeIcon className="w-6 h-6 text-blue-500" />
+                    <a href="https://example.com/integration2/facilities/maintenance-request" class="font-medium text-slate-800 hover:underline">Facilities Maintenance Request</a>
+                  </div>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 text-blue-800">Opened</span>
+                </li>
+                <li class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <CalendarDaysIcon className="w-6 h-6 text-green-500" />
+                    <a href="https://example.com/hr-system/hr/time-off-request" class="font-medium text-slate-800 hover:underline">Time Off Request</a>
+                  </div>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-100 text-green-800">Complete</span>
+                </li>
+                <li class="flex items-center justify-between py-3">
+                  <div class="flex items-center gap-3">
+                    <ReceiptPercentIcon className="w-6 h-6 text-red-500" />
+                    <a href="https://example.com/integration4/purchasing/order-issue" class="font-medium text-slate-800 hover:underline">Purchase Order Issue</a>
+                  </div>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-red-100 text-red-800">Rejected</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <aside class="space-y-6 flex justify-center min-w-0 md:col-span-2">
+            <AiBot client:visible />
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300 py-8 text-center text-sm">
+      <div class="container mx-auto">
+        <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+        <a href="/" class="mt-2 inline-block text-blue-400 hover:text-blue-300">
+          Back to Home (Temp)
+        </a>
+      </div>
+    </footer>
+  </div>
+</Layout>
